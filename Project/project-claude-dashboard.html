@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Usage Dashboard — Hikmet Bisen</title>
+  <meta name="description" content="Local analytics dashboard for Claude Code — token usage, cost estimates, session history. Customized to Alpine Dawn theme with true-live auto-rescan.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo">
+        Hikmet Bisen
+        <span>Mechanical Engineer</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="projects.html" class="active">Projects</a></li>
+        <li><a href="../Resume/resume.html">Resume</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section class="project-detail-hero">
+    <img
+      src="../assets/images/denali.jpg"
+      alt="Denali — Alaska"
+      class="project-detail-hero-img"
+    >
+    <div class="project-detail-overlay"></div>
+    <div class="project-mountain-credit">Denali — Alaska, 6,190m</div>
+
+    <div class="project-detail-hero-content">
+      <a href="projects.html" class="project-detail-back">← All Projects</a>
+      <div class="project-detail-meta">
+        <span class="project-detail-num">09 / 09</span>
+        <span class="project-detail-cat">Tools / Observability</span>
+        <span class="project-detail-date">2026</span>
+      </div>
+      <h1 class="project-detail-title">FORGE / Claude Usage —<br>Personal AI Observability</h1>
+      <p class="project-detail-subtitle">Local Analytics Dashboard · Python · SQLite · Chart.js · Alpine Dawn Theme</p>
+    </div>
+  </section>
+
+  <!-- ── Content ── -->
+  <section class="project-detail-content">
+    <div class="container">
+      <div class="project-detail-grid">
+
+        <!-- Sidebar -->
+        <aside class="project-detail-sidebar">
+          <div class="project-sidebar-section">
+            <span class="project-sidebar-label">Timeline</span>
+            <div class="project-sidebar-value">
+              <strong>2026 — Active</strong>
+              Installed, debugged, themed &amp; extended same day
+            </div>
+          </div>
+          <div class="project-sidebar-section">
+            <span class="project-sidebar-label">Role</span>
+            <div class="project-sidebar-value">
+              <strong>Maintainer &amp; Customizer</strong>
+              Bug fix, theme retrofit, true-live mode, system metadata
+            </div>
+          </div>
+          <div class="project-sidebar-section">
+            <span class="project-sidebar-label">Category</span>
+            <div class="project-sidebar-value">
+              <strong>Tools / Observability</strong>
+              Personal AI usage analytics &amp; cost monitoring
+            </div>
+          </div>
+          <div class="project-sidebar-section">
+            <span class="project-sidebar-label">Tools &amp; Stack</span>
+            <div class="project-tools-list">
+              <span class="project-tool-tag">Python 3 (stdlib)</span>
+              <span class="project-tool-tag">SQLite</span>
+              <span class="project-tool-tag">http.server</span>
+              <span class="project-tool-tag">Chart.js</span>
+              <span class="project-tool-tag">JSONL Parsing</span>
+              <span class="project-tool-tag">HTML / CSS</span>
+              <span class="project-tool-tag">Google Fonts</span>
+            </div>
+          </div>
+          <div class="project-sidebar-section">
+            <span class="project-sidebar-label">Upstream</span>
+            <div class="project-sidebar-value">
+              <a href="https://github.com/phuryn/claude-usage" target="_blank" rel="noopener noreferrer" style="color: var(--steel-light); text-decoration: underline;">phuryn/claude-usage →</a>
+            </div>
+          </div>
+          <div class="project-sidebar-section">
+            <span class="project-sidebar-label">Mountain</span>
+            <div class="project-sidebar-value">
+              <strong>Denali</strong>
+              6,190m — North America's highest peak. Athabaskan for "The Great One." This is an observability tool — and Denali is an observation peak. From its summit you can see weather systems, glaciers, and entire ranges. The dashboard does the same for AI usage: zoom out, see everything, know where you stand.
+            </div>
+          </div>
+        </aside>
+
+        <!-- Body -->
+        <div class="project-detail-body">
+          <h2>Knowing What I'm <strong>Actually Spending</strong></h2>
+
+          <p>
+            I use Claude Code daily — sometimes for hours. Without observability, I had no idea how many tokens I was burning, which projects were costing the most, or whether my workflow was efficient. So I installed a third-party dashboard, hit a wall when it rendered blank, fixed the bug, then customized the whole thing to match my portfolio theme and added true-live auto-rescan so it updates as I work.
+          </p>
+
+          <p>
+            The dashboard is a single Python script with zero dependencies — just stdlib (<code>sqlite3</code>, <code>http.server</code>, <code>pathlib</code>) and Chart.js from a CDN. It reads Claude Code's local JSONL transcripts at <code>~/.claude/projects/</code>, parses them into a SQLite database at <code>~/.claude/usage.db</code>, then serves an HTML dashboard on <code>localhost:8080</code> with token usage, cost estimates, model breakdowns, hourly distribution, and session history.
+          </p>
+
+          <p>
+            What it shows me right now: <strong>1,216 turns across 30 sessions</strong>, <strong>1.09M output tokens</strong>, <strong>86.34M cache reads</strong>, <strong>~$72 in API-equivalent cost</strong> over the last 30 days — Sonnet doing 79% of the work, Opus handling complex sessions, Haiku for fast tasks. Top project by token volume: <code>Downloads/Claude_Coding</code> (where most of my dev work happens).
+          </p>
+
+          <div class="project-contributions">
+            <h3>What I Contributed</h3>
+            <ul>
+              <li><strong>Critical bug fix —</strong> <code>dashboard.py:745</code> referenced an undeclared variable <code>cutoff</code>. The error got swallowed by an outer try/catch in <code>loadData()</code>, killing all renders silently — blank stats row and 4 empty chart cards even though the database had real data. Single-line fix: changed the filter to use the same <code>start</code>/<code>end</code> variables as line 662. Took 3 minutes of debugging, instant unblock.</li>
+              <li><strong>Alpine Dawn theme retrofit —</strong> rebuilt the entire color palette to match my portfolio: <code>--bg: #070C14</code>, <code>--card: #0F1822</code>, <code>--accent: #C9A084</code> (gold), <code>--steel: #1C6FA3</code>. 8-tone alpine donut palette for the model breakdown. Red→steel gradient for the peak-hour bar.</li>
+              <li><strong>Typography —</strong> swapped the default fonts for Inter (body), Montserrat (UI labels), and Cormorant Garamond italic for the brand wordmark — same stack as the portfolio.</li>
+              <li><strong>Header rebrand —</strong> "Claude Code Usage Dashboard" → <strong>FORGE / Claude Usage</strong>. Title tag, header strip, everything aligned with the FORGE AI brand.</li>
+              <li><strong>True-live auto-rescan —</strong> built a new endpoint <code>POST /api/scan-incremental</code> that runs the scanner WITHOUT deleting the database. The 30s auto-refresh now hits incremental scan first, then loads data — so live Claude session turns appear within ~30 seconds of being written.</li>
+              <li><strong>Backend system metadata —</strong> extended <code>get_dashboard_data()</code> to return a <code>system</code> block with DB path, size, mtime, total turns/sessions, oldest/newest record, unique projects, JSONL count, model count. All surfaced in the header meta strip.</li>
+              <li><strong>Default range —</strong> changed from 30d to 7d (more useful daily-view default).</li>
+            </ul>
+          </div>
+
+          <p>
+            The full data flow is: Claude Code writes JSONL to <code>~/.claude/projects/</code> on every session (always, regardless of whether the dashboard is running). The scanner parses JSONL into a normalized SQLite schema. The dashboard reads from SQLite, not from JSONL — keeping it fast even with hundreds of sessions. Cowork sessions aren't captured because they're server-side and don't write local logs.
+          </p>
+
+          <p>
+            One nuance worth noting: the cost estimates use Anthropic's API pricing as of April 2026. Pro and Max subscriptions are flat-fee, so the dollar figure represents <em>"what the API would cost"</em> rather than actual spend. Useful for understanding usage patterns, not for billing. I treat it as a relative metric — am I burning more this week than last? Which project is the heaviest? That's what matters.
+          </p>
+
+          <span class="project-status-badge">Active — Running Locally · Auto-Rescan Every 30s</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Project Navigation ── -->
+  <nav class="project-nav-bar">
+    <div class="container">
+      <div class="project-nav-inner">
+        <a href="project-obsidian-graph.html" class="project-nav-item">
+          <span class="project-nav-label">← Previous</span>
+          <span class="project-nav-name">Obsidian — AI Memory Graph</span>
+        </a>
+        <a href="projects.html" class="project-nav-center">All Projects</a>
+        <a href="project-bmw-e30.html" class="project-nav-item next">
+          <span class="project-nav-label">Back to Start →</span>
+          <span class="project-nav-name">1983 BMW E30 Restoration</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">Hikmet Bisen</div>
+        <div class="footer-peak">K2 — 8,611m</div>
+        <div class="footer-links">
+          <a href="projects.html">Projects</a>
+          <a href="../Resume/resume.html">Resume</a>
+          <a href="https://www.linkedin.com/in/hikmetbisen/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/Hikmet4416" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
