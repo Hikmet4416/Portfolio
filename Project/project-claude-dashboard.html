@@ -66,6 +66,7 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 28px;
     }
+    .gallery-card.wide { grid-column: 1 / -1; }
     @media (max-width: 768px) {
       .gallery-grid { grid-template-columns: 1fr; gap: 20px; }
       .dashboard-gallery { padding: 60px 0 80px; }
@@ -290,6 +291,14 @@
           <figcaption>
             <strong>Recent Sessions · Last 30 Days</strong>
             Per-session drill-down with model used and API-equivalent cost
+          </figcaption>
+        </figure>
+
+        <figure class="gallery-card wide">
+          <img src="../assets/images/dashboard/cost-by-project.png" alt="Cost by project and cost by project & branch tables — Claude_Coding leads spend, with HEAD vs main branch breakdown">
+          <figcaption>
+            <strong>Cost By Project &amp; Branch · Where The Time Goes</strong>
+            Claude_Coding ($74.94, 22 sessions, 1.06M output tokens) is the heaviest lift — Portfolio-main and Personal_Dashboard fill the rest. The branch view splits HEAD from main so I can see which branch I'm actually burning tokens on.
           </figcaption>
         </figure>
       </div>
